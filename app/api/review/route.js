@@ -28,18 +28,23 @@ export async function POST(req) {
 
     try {
         const prompt = `
-        Generate a realistic, friendly, and informative restaurant review for the following restaurant.
+            You are an assistant that MUST return a single restaurant review formatted in Markdown ONLY. 
+            Do NOT output any extra explanation, metadata, or JSON — just the review text.
 
-        Name: ${restaurantName}
-        Location: ${location}
+            Requirements:
+            - Use a single top-level bold title in this format: **Restaurant Name - short subtitle**
+            - Then a short paragraph (1-2 sentences).
+            - Use a bold "**Pros:**" heading followed by a numbered list (1., 2., 3.) with each item bolded at the start of the line and a short explanation.
+            - Use a bold "**Cons:**" heading followed by a numbered list (1., 2., 3.) same style.
+            - Use a bold "**Recommended Dishes:**" heading followed by a numbered list of 3 items.
+            - Use a bold "**Overall Rating:**" heading with a numeric rating (e.g., 3.5/5).
+            - Use a bold "**Verdict:**" heading with a 1-sentence verdict.
+            - Use double newlines between major sections (title paragraph, Pros, Cons, Recommended Dishes, Overall Rating, Verdict).
+            - Use Markdown syntax for bold "**like this**", numbered lists "1.", and plain text for everything else.
+            - Keep the entire output concise (no more than 200 words) and return valid Markdown only.
 
-        Include:
-        - 3 Pros and 3 Cons
-        - 3 recommended dishes
-        - Overall rating (out of 5)
-        - A 1-2 sentence verdict
-
-        Return the review as plain text.
+            Restaurant: ${restaurantName}
+            Location: ${location}
         `.trim();
 
         const response = await ai.models.generateContent({

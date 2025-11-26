@@ -28,10 +28,10 @@ export default function Home() {
 
 
   return (
-    <div>
-      <h1>AI Restaurant Reviewer</h1>
+    <div className="container">
+      <h1 className="page-title">AI Restaurant Reviewer</h1>
       <SearchForm onSearch={handleSearch} />
-      {loading && <p>Generating review...</p>}
+      {loading && <p className="loading-text">Generating review...</p>}
       {review && <ReviewCard review={review} />}
     </div>
   )
