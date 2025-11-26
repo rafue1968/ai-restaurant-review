@@ -38,7 +38,7 @@ export async function POST(req) {
             - Use a bold "**Cons:**" heading followed by a numbered list (1., 2., 3.) same style.
             - Use a bold "**Recommended Dishes:**" heading followed by a numbered list of 3 items.
             - Use a bold "**Overall Rating:**" heading with a numeric rating (e.g., 3.5/5).
-            - Use a bold "**Verdict:**" heading with a 1-sentence verdict.
+            - Use a bold "**Decision:**" heading with a 1-sentence verdict.
             - Use double newlines between major sections (title paragraph, Pros, Cons, Recommended Dishes, Overall Rating, Verdict).
             - Use Markdown syntax for bold "**like this**", numbered lists "1.", and plain text for everything else.
             - Keep the entire output concise (no more than 200 words) and return valid Markdown only.
