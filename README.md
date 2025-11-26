@@ -27,7 +27,7 @@ npm install
 ```
 
 3. Create enviornment variables
-Create a ``.env.local`` file in the project root with server-side API key (do not commit):
+Create a ``.env`` file in the project root with server-side API key (do not commit):
 ```env
 GEMINI_API_KEY=sk-REPLACE_WITH_YOUR_KEY
 ```
