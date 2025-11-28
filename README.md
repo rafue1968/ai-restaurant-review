@@ -1,6 +1,6 @@
 # AI Restaurant Reviewer
 
-A lightweight Next.js + React prototype that generates AI-powered restaurant reviews using the Gemini API. Built for a one-day case study / demo — ready to deploy to Vercel.
+A lightweight Next.js + React prototype that generates AI-powered restaurant reviews using the Gemini API. Pretty simple and convenient to use for quickly getting insights about certain restaurants.
 
 **Features**
 - Select a sample restaurant (or paste restaurant data)
