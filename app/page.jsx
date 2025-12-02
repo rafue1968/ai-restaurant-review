@@ -4,13 +4,14 @@ import { useState } from "react";
 import SearchForm from "../components/SearchForm"
 import ReviewCard from "../components/ReviewCard"
 import axios from "axios";
-
+import Disclaimer from "../components/Disclaimer"
 
 export default function Home() {
   const [review, setReview] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (restaurantName, location) => {
+    setReview("");
     setLoading(true);
     try {
       const res = await axios.post("/api/review", {
@@ -33,6 +34,7 @@ export default function Home() {
       <SearchForm onSearch={handleSearch} />
       {loading && <p className="loading-text">Generating review...</p>}
       {review && <ReviewCard review={review} />}
+      <Disclaimer />
     </div>
   )
 }

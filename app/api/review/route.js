@@ -17,8 +17,6 @@ export async function POST(req) {
 
     const {restaurantName, location} = await req.json();
 
-    console.log("sending:", {restaurantName, location})
-
     if (!restaurantName || !location){
         return NextResponse.json(
         { error: "Missing restaurant data: restaurantName and location are required." },
@@ -28,19 +26,28 @@ export async function POST(req) {
 
     try {
         const prompt = `
-            You are an assistant that MUST return a single restaurant review formatted in Markdown ONLY. 
+            You are an assistant that MUST return a single restaurant review formatted in Markdown ONLY.
             Do NOT output any extra explanation, metadata, or JSON — just the review text.
 
-            Requirements:
+            Quality & Reliability Requirements:
+            - Clearly distinguish between **recently reported qualities** (if known) and the restaurant’s
+            **general long-term reputation**, so users are not misled by older information.
+            - You MUST include at least one dedicated point describing what is great about the restaurant’s
+            location — such as its atmosphere, neighbourhood vibes, accessibility, scenery, or safety —
+            and explain how this positively contributes to the dining experience.
+            - You MUST clearly state the restaurant’s food status — such as halal, kosher, vegan, vegetarian,
+            gluten-free, or other dietary classifications — and briefly explain how this influences menu
+            choices and the overall dining experience.
+
+
+            Formatting Requirements:
             - Use a single top-level bold title in this format: **Restaurant Name - short subtitle**
-            - Then a short paragraph (1-2 sentences).
+            - Then a short paragraph (1–2 sentences) including the Recency Note when needed.
             - Use a bold "**Pros:**" heading followed by a numbered list (1., 2., 3.) with each item bolded at the start of the line and a short explanation.
-            - Use a bold "**Cons:**" heading followed by a numbered list (1., 2., 3.) same style.
+            - Use a bold "**Cons:**" heading followed by a numbered list (1., 2., 3.) in the same style.
             - Use a bold "**Recommended Dishes:**" heading followed by a numbered list of 3 items.
-            - Use a bold "**Overall Rating:**" heading with a numeric rating (e.g., 3.5/5).
-            - Use a bold "**Decision:**" heading with a 1-sentence verdict.
-            - Use double newlines between major sections (title paragraph, Pros, Cons, Recommended Dishes, Overall Rating, Verdict).
-            - Use Markdown syntax for bold "**like this**", numbered lists "1.", and plain text for everything else.
+            - Use a bold "**Overall Rating:**" heading with a numeric rating.
+            - Use a bold "**Verdict:**" heading with a 1-sentence verdict.
             - Keep the entire output concise (no more than 200 words) and return valid Markdown only.
 
             Restaurant: ${restaurantName}
